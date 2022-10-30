@@ -10,7 +10,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Badge from '@mui/material/Badge';
 
 // styled component stuff
-import Wrapper from './App.styles'
+import { Wrapper } from './App.styles'
 
 export type CartItemType = {
   id: number;
