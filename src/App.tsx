@@ -49,7 +49,21 @@ function App() {
       return [...prev, {...clickedItem, amount: 1}]
     })
   }
-  const handleRemoveFromCart = () => null
+  const handleRemoveFromCart = (id: number) => {
+    setCartItems(prev => (
+      prev.reduce((a, item) => {
+        if (item.id === id) {
+          if (item.amount === 1) {
+            return a
+          } 
+          return [...a, {...item, amount: item.amount - 1}]
+        }
+        else {
+          return [...a, item]
+        }
+      }, [] as CartItemType[])
+    ))
+  }
 
   if (isLoading) return <LinearProgress />;
   if (error) return <div>Something went wrong...</div>
