@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useQuery } from 'react-query'
-import Item from './Item/Item'
 
 // Material UI Stuff
 import Drawer from '@mui/material/Drawer'
@@ -8,6 +7,10 @@ import LinearProgress from '@mui/material/LinearProgress'
 import Grid from '@mui/material/Grid'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Badge from '@mui/material/Badge';
+
+// My Components
+import Item from './Item/Item'
+import Cart from './Cart/Cart'
 
 // styled component stuff
 import { Wrapper, StyledButton } from './App.styles'
@@ -45,7 +48,7 @@ function App() {
     <div className="App">
       <Wrapper>
         <Drawer anchor="right" open={cartisOpen} onClose={() => setCartIsOpen(false)}>
-          here is where the cart will go
+          <Cart cartItems={cartItems} addToCart={handleAddToCart} removeFromCart={handleRemoveFromCart} />
         </Drawer>
         <StyledButton onClick={() => setCartIsOpen(true)}>
           <Badge badgeContent={getTotalItems(cartItems)} color="error">
