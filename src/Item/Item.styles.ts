@@ -5,7 +5,7 @@ const ItemWrapper = styled.div`
     justify-content: space-between;
     flex-direction: column;
     width: 100%;
-    border: 1px solid red;
+    border: 1px solid black;
     border-radius: 20px;
     height: 100%;
 
@@ -14,8 +14,8 @@ const ItemWrapper = styled.div`
     }
 
     img {
-        max-height: 250px;
-        object-fit: cover;
+        max-height: 300px;
+        object-fit: contain;
         border-radius: 20px 20px 0 0;
     }
 

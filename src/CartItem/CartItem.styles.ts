@@ -4,7 +4,7 @@ export const CartItemWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     font-family: Helvetica, sans-serif;
-    border-bottom: 1px solid red;
+    border-bottom: 1px solid black;
     padding-bottom: 20px;
 
     div {
@@ -17,7 +17,7 @@ export const CartItemWrapper = styled.div`
     }
 
     img {
-        max-width: 80%;
+        max-width: 40%;
         object-fit: cover;
         margin-left: 40px;
     }
