@@ -10,7 +10,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Badge from '@mui/material/Badge';
 
 // styled component stuff
-import { Wrapper } from './App.styles'
+import { Wrapper, StyledButton } from './App.styles'
 
 export type CartItemType = {
   id: number;
@@ -22,14 +22,19 @@ export type CartItemType = {
   amount: number;
 }
 
-const getProducts = async (): Promise<CartItemType[]> => 
-  await(await fetch('http://fakestoreapi.com/products')).json()
-
+const getProducts = async (): Promise<CartItemType[]> => {
+  return await(await fetch('http://fakestoreapi.com/products')).json()
+}
 
 function App() {
+  const [cartisOpen, setCartIsOpen] = useState(false)
+  const [cartItems, setCartItems] = useState([] as CartItemType[])
+
   const { data, isLoading, error } = useQuery<CartItemType[]>('products', getProducts)
   
-  const getTotalItems = () => null
+  const getTotalItems = (items: CartItemType[]) => {
+    return items.reduce((a: number, items) => a  + items.amount, 0)
+  }
   const handleAddToCart = (clickedItem: CartItemType) => null
   const handleRemoveFromCart = () => null
 
@@ -39,6 +44,14 @@ function App() {
   return (
     <div className="App">
       <Wrapper>
+        <Drawer anchor="right" open={cartisOpen} onClose={() => setCartIsOpen(false)}>
+          here is where the cart will go
+        </Drawer>
+        <StyledButton onClick={() => setCartIsOpen(true)}>
+          <Badge badgeContent={getTotalItems(cartItems)} color="error">
+            <ShoppingCartIcon />
+          </Badge>
+        </StyledButton>
           <Grid container spacing={3}>
           {data?.map(item => (
             <Grid item key={item.id} xs={12} sm={4}>
